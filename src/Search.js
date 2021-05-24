@@ -43,7 +43,7 @@ export default function Search() {
             </form>
             <p>{message}</p>
             <footer>
-                This project was coded by Rofiat Olusanya and <a href="https://github.com/Rofiat369/weather-react" target="_blank" rel="noreferrer" >open sourced on Github</a>
+                This project was coded by Rofiat Olusanya and is <a href="https://github.com/Rofiat369/weather-react" target="_blank" rel="noreferrer">Open sourced on Github</a>
             </footer>
         </div>
     );
