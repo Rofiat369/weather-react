@@ -1,11 +1,25 @@
+import React from "react";
+import Button from "./Button";
+import Search from "./Search";
 import './App.css';
+
 
 
 function App() {
   return <div className="App" >
-    <h2 >Weather App</h2>
+    <div className="container">
+      <div className="card main mt-5">
+        <Button />
+        <Search defaultCity="New York" />
+      </div>
+    </div>
+    <footer>
+      This page was coded by Rofiat Olusanya and
+      <a href="https://github.com/Rofiat369/weather-react">
+        Open-Sourced on github
+      </a>
+    </footer>
   </div>
-
 }
 
 export default App;

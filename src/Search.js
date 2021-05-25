@@ -1,50 +1,63 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './Search.css'
 
 
-export default function Search() {
-    let [city, setCity] = useState("");
-    let [message, setMessage] = useState("");
+export default function Search(props) {
+    const [weatherData, setWeatherData] = useState({ ready: false });
 
-    function displayWeather(response) {
-        setMessage(
-            <ul>
-                <li>Temperature: {Math.round(response.data.main.temp)}°C </li>
-                <li>Description: {response.data.weather[0].description}</li>
-                <li>Humidity: {response.data.main.humidity}%</li>
-                <li>Wind: {response.data.main.wind}km/h</li>
-                <li>
-                    {" "}
-                    <img
-                        src={`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`}
-                        alt="Icon"
-                    />
-                </li>
-            </ul>
-        );
+    function handleResponse(response) {
+        setWeatherData({
+            ready: true,
+            temperature: response.data.main.temp,
+            wind: response.data.wind.speed,
+            city: response.data.name,
+            humidity: response.data.main.humidity,
+            date: "Wednesday 07:00",
+            description: response.data.weather[0].description,
+            icon: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+        });
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a61759b6c49305b3341bd63820265f73&units=metric`;
-        axios.get(url).then(displayWeather);
-    }
 
-    function updateCity(event) {
-        event.preventDefault();
-        setCity(event.target.value);
-    }
+    if (weatherData.ready) {
+        return (
+            <div className="Weather">
+                <h1>{weatherData.city} </h1>
+                <ul>
+                    <li> {weatherData.date} </li>
+                    <li className="text-capitalize"> {weatherData.description} </li>
+                </ul>
+                <div className="row">
+                    <div className="col-6" >
+                        <div className="d-flex" >
+                            <img
+                                src={weatherData.icon}
+                                alt={weatherData.description}
+                                className="float-left"
+                            />
+                            <div className="float-left">
+                                <span className="temperature"> {Math.round(weatherData.temperature)} </span>
+                                <span className="metric">°C</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6" >
+                        <ul>
+                            <li> Precipitation: 15%</li>
+                            <li> Humidity: {weatherData.humidity}</li>
+                            <li> Wind: {weatherData.wind}km/h</li>
+                        </ul>
+                    </div>
+                </div>
+            </div >
+        )
+    } else {
+        const apiKey = "a61759b6c49305b3341bd63820265f73";
+        let city = "New York";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(handleResponse);
 
-    return (
-        <div className="App">
-            <form onSubmit={handleSubmit}>
-                <input type="search" onChange={updateCity} />
-                <input type="submit" value="Search" />
-            </form>
-            <p>{message}</p>
-            <footer>
-                This project was coded by Rofiat Olusanya and is <a href="https://github.com/Rofiat369/weather-react" target="_blank" rel="noreferrer">Open sourced on Github</a>
-            </footer>
-        </div>
-    );
+        return "loading..."
+    }
 }
