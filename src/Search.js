@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Loader from 'react-loader-spinner';
+import FormattedDate from "./FormattedDate";
 import './Search.css'
 
 
@@ -13,7 +15,7 @@ export default function Search(props) {
             wind: response.data.wind.speed,
             city: response.data.name,
             humidity: response.data.main.humidity,
-            date: "Wednesday 07:00",
+            date: new Date(response.data.dt * 1000),
             description: response.data.weather[0].description,
             icon: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
         });
@@ -25,7 +27,7 @@ export default function Search(props) {
             <div className="Weather">
                 <h1>{weatherData.city} </h1>
                 <ul>
-                    <li> {weatherData.date} </li>
+                    <li>  <FormattedDate date={weatherData.date} /> </li>
                     <li className="text-capitalize"> {weatherData.description} </li>
                 </ul>
                 <div className="row">
@@ -54,10 +56,16 @@ export default function Search(props) {
         )
     } else {
         const apiKey = "a61759b6c49305b3341bd63820265f73";
-        let city = "New York";
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse);
 
-        return "loading..."
+        return (
+            <Loader
+                type="ThreeDots"
+                color="black"
+                height="50"
+                width="50"
+            />
+        );
     }
 }

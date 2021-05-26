@@ -10,7 +10,7 @@ function App() {
     <div className="container">
       <div className="card main mt-5">
         <Button />
-        <Search defaultCity="New York" />
+        <Search defaultCity="Lagos" />
       </div>
     </div>
     <footer>
