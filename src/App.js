@@ -1,6 +1,6 @@
 import React from "react";
+import WeatherInfo from "./WeatherInfo";
 import Button from "./Button";
-import Search from "./Search";
 import './App.css';
 
 
@@ -10,7 +10,8 @@ function App() {
     <div className="container">
       <div className="card main mt-5">
         <Button />
-        <Search defaultCity="Lagos" />
+        <WeatherInfo defaultCity="Lagos" />
+
       </div>
     </div>
     <footer>
