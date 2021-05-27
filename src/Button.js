@@ -41,20 +41,19 @@ export default function Search(props) {
     if (weatherData.ready) {
         return (
             <div className="Weather">
-                <div className="input-group mt-3" onSubmit={handleSubmit}>
+                <form className="input-group mt-3" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         className="form-control"
                         placeholder="Enter The City Name"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
-
+                        onChange={cityChange}
                     />
                     <button
                         className="btn btn-outline-secondary"
                         type="submit"
                         id="button-addon2"
-                        onChange={cityChange}
 
                     >
                         Search
@@ -65,7 +64,7 @@ export default function Search(props) {
                             📍{" "}
                         </span>
                     </button>
-                </div>
+                </form>
                 <WeatherInfo data={weatherData} />
 
             </div>
