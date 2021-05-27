@@ -1,5 +1,4 @@
 import React from "react";
-import WeatherInfo from "./WeatherInfo";
 import Button from "./Button";
 import './App.css';
 
@@ -9,8 +8,8 @@ function App() {
   return <div className="App" >
     <div className="container">
       <div className="card main mt-5">
-        <Button />
-        <WeatherInfo defaultCity="Lagos" />
+        <Button defaultCity="Lagos" />
+
 
       </div>
     </div>

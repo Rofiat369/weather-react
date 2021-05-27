@@ -18,41 +18,47 @@ export default function Search(props) {
             description: response.data.weather[0].description,
             icon: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
             wind: response.data.wind.speed,
-            city: response.data.name
+            city: response.data.name,
         });
     }
 
 
     function handleSubmit(event) {
         event.preventDefault();
+        search();
     }
 
     function cityChange(event) {
         setCity(event.target.value);
     }
 
+    function search() {
+        const apiKey = "a61759b6c49305b3341bd63820265f73";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(handleResponse);
+    }
+
     if (weatherData.ready) {
         return (
             <div className="Weather">
-                <div className="input-group mt-3">
+                <div className="input-group mt-3" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         className="form-control"
                         placeholder="Enter The City Name"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
-                        onSubmit={handleSubmit}
-                        onChange={cityChange}
+
                     />
                     <button
                         className="btn btn-outline-secondary"
                         type="submit"
                         id="button-addon2"
+                        onChange={cityChange}
+
                     >
                         Search
                    </button>
-                    <WeatherInfo data={weatherData} />
-
                     <button type="submit" className="current-location">
                         {" "}
                         <span role="img" aria-label="location">
@@ -60,15 +66,12 @@ export default function Search(props) {
                         </span>
                     </button>
                 </div>
-
+                <WeatherInfo data={weatherData} />
 
             </div>
         )
     } else {
-        const apiKey = "a61759b6c49305b3341bd63820265f73";
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);
-
+        search();
         return (
             <Loader
                 type="ThreeDots"
