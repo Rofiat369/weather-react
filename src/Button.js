@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loader from 'react-loader-spinner';
 import WeatherInfo from "./WeatherInfo"
+import WeatherForecast from "./WeatherForecast";
 import './Button.css'
 
 
@@ -66,6 +67,7 @@ export default function Search(props) {
                     </button>
                 </form>
                 <WeatherInfo data={weatherData} />
+                <WeatherForecast />
 
             </div>
         )
