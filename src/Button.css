@@ -29,8 +29,8 @@
 }
 
 .Weather canvas {
+  margin-top: 10px;
   margin-right: 5px;
-  margin-top: 25px;
   display: inline-block;
 }
 
@@ -38,7 +38,6 @@
   color: rgb(33, 33, 33);
   font-size: 64px;
   font-weight: 400;
-  margin-top: 50px;
 }
 
 .Weather .metric {
