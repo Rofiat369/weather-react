@@ -60,12 +60,7 @@ export default function Search(props) {
                     >
                         Search
                    </button>
-                    <button type="submit" className="current-location">
-                        {" "}
-                        <span role="img" aria-label="location">
-                            📍{" "}
-                        </span>
-                    </button>
+
                 </form>
                 <WeatherInfo data={weatherData} />
                 <WeatherForecast coordinates={weatherData.coordinates} />
