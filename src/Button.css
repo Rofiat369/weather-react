@@ -1,8 +1,8 @@
 body {
-  background-image: url(pexels-eskil-bjerkestrand-2414250.jpg);
+  background-image: url(yang-miao-WMrzUixRYvM-unsplash.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -10,7 +10,7 @@ body {
   border-radius: 5px;
   border: 1px solid gray;
   max-width: 50%;
-  background-image: url(pexels-eskil-bjerkestrand-2414250.jpg);
+  background-image: url(yang-miao-WMrzUixRYvM-unsplash.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
